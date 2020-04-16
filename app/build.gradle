@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-apply plugin: 'kotlin-kapt '
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -40,6 +40,19 @@ android {
 }
 
 dependencies {
+    def archLifecycle_version = "2.2.0"
+    def room_version = "2.2.5"
+
+    // Room components
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    androidTestImplementation "androidx.room:room-testing:$room_version"
+
+    // Lifecycle components
+    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycle_version"
+    kapt "androidx.lifecycle:lifecycle-compiler:$archLifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycle_version"
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
