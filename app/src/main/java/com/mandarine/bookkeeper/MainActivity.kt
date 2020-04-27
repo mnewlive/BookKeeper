@@ -5,10 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var viewModel: BookViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,12 +23,22 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, NewBookActivity::class.java)
             startActivityForResult(intent, NEW_NOTE_ACTIVITY_REQUEST_CODE)
         }
+
+        viewModel = ViewModelProvider(this).get(BookViewModel::class.java)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == NEW_NOTE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            Log.d("some", "get data")
+            val id = UUID.randomUUID().toString()
+            val authorName = data?.getStringExtra(NewBookActivity.NEW_AUTHOR) ?: "Толстой"
+            val bookName = data?.getStringExtra(NewBookActivity.NEW_BOOK) ?: "Война и мир"
+
+            val book = Book(id, authorName, bookName)
+            viewModel.insert(book)
+            Log.d("some", "all is ok")
+        } else {
+            Log.d("some", "Something was wrong")
         }
     }
 
