@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +20,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        val bookListAdapter = BookListAdapter(this)
+        recyclerview.adapter = bookListAdapter
+        recyclerview.layoutManager = LinearLayoutManager(this)
 
         fab.setOnClickListener { view ->
             val intent = Intent(this, NewBookActivity::class.java)
