@@ -23,6 +23,11 @@ class BookListAdapter(private val context: Context) : RecyclerView.Adapter<BookL
 
 	override fun getItemCount(): Int = bookList.size
 
+	fun setBooks(books: List<Book>) {
+		bookList = books
+		notifyDataSetChanged()
+	}
+
 	inner class BookViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 		private var pos: Int = 0

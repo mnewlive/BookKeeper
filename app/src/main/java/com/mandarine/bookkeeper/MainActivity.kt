@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -22,8 +23,8 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val bookListAdapter = BookListAdapter(this)
-        recyclerview.adapter = bookListAdapter
-        recyclerview.layoutManager = LinearLayoutManager(this)
+        recyclerview?.adapter = bookListAdapter
+        recyclerview?.layoutManager = LinearLayoutManager(this)
 
         fab.setOnClickListener { view ->
             val intent = Intent(this, NewBookActivity::class.java)
@@ -31,6 +32,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel = ViewModelProvider(this).get(BookViewModel::class.java)
+
+        viewModel.allBooks.observe(this, Observer { books ->
+            bookListAdapter.setBooks(books)
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

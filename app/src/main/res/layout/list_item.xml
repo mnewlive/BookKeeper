@@ -39,10 +39,7 @@
                 android:text="Book"
                 android:textColor="#616161"
                 android:textSize="18sp" />
-
         </LinearLayout>
-
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>
 
