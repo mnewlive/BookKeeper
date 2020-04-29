@@ -9,4 +9,6 @@
     <string name="author">Author</string>
     <string name="book">Book</string>
     <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="search">Search</string>
 </resources>

@@ -9,22 +9,34 @@
         android:id="@+id/etAuthorName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="15"
         android:layout_gravity="center"
+        android:ems="15"
         android:hint="@string/author" />
 
     <EditText
         android:id="@+id/etBookName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="15"
         android:layout_gravity="center"
+        android:ems="15"
         android:hint="@string/book" />
 
-    <Button
-        android:id="@+id/bAdd"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/save" />
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel" />
+
+        <Button
+            android:id="@+id/bSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save" />
+    </LinearLayout>
 </LinearLayout>
