@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity(), BookListAdapter.OnDeleteClickListener 
 
         // Get the SearchView and set the searchable configuration
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val searchView = menu.findI tem(R.id.search).actionView as SearchView
+        val searchView = menu.findItem(R.id.search).actionView as SearchView
 
         // Setting the SearchResultActivity to show the result
         val componentName = ComponentName(this, SearchResultActivity::class.java)

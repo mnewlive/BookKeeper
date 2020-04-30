@@ -10,12 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.room.ps.bookkeeper.SearchViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
+//TODO: Optimize code with SearchViewModel as MainActivity and BookViewModel(e.g. create a super class)
 class SearchResultActivity : AppCompatActivity(), BookListAdapter.OnDeleteClickListener {
 
     private lateinit var searchViewModel: SearchViewModel

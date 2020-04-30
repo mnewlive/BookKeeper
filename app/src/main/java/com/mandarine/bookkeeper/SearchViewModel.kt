@@ -1,14 +1,11 @@
-package com.room.ps.bookkeeper
+package com.mandarine.bookkeeper
 
 import android.app.Application
 import android.os.AsyncTask
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.room.Query
-import com.mandarine.bookkeeper.Book
-import com.mandarine.bookkeeper.BookDao
-import com.mandarine.bookkeeper.BookRoomDatabase
 
+//TODO: Optimize code with SearchResultActivity as MainActivity and BookViewModel(e.g. create a super class)
 class SearchViewModel(application: Application) : AndroidViewModel(application) {
 
     private val bookDao: BookDao
