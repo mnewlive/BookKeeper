@@ -55,5 +55,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val NEW_NOTE_ACTIVITY_REQUEST_CODE = 1
+        const val UPDATE_NOTE_ACTIVITY_REQUEST_CODE = 2
     }
 }

@@ -12,6 +12,17 @@ class EditBookActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new)
 
+        val bundle: Bundle? = intent.extras
+
+        bundle?.let {
+            id = bundle.getString("id")
+            val author = bundle.getString("author")
+            val book = bundle.getString("book")
+
+            etAuthorName.setText(author)
+            etBookName.setText(book)
+        }
+
 
         bSave.setOnClickListener {
             finish()
