@@ -20,22 +20,26 @@ class EditBookActivity : AppCompatActivity() {
             id = bundle.getString("id")
             val author = bundle.getString("author")
             val book = bundle.getString("book")
+            val description = bundle.getString("description")
 
             etAuthorName.setText(author)
             etBookName.setText(book)
+            etDescription.setText(description)
         }
 
 
         bSave.setOnClickListener {
             val updatedAuthor = etAuthorName.text.toString()
             val updatedBook = etBookName.text.toString()
+            val updatedDescription = etDescription.text.toString()
 
             val resultIntent = Intent()
             resultIntent.putExtra(ID, id)
             resultIntent.putExtra(UPDATED_AUTHOR, updatedAuthor)
             resultIntent.putExtra(UPDATED_BOOK, updatedBook)
+            resultIntent.putExtra(UPDATED_DESCRIPTION, updatedDescription)
             setResult(Activity.RESULT_OK, resultIntent)
-            
+
             finish()
         }
 
@@ -48,5 +52,6 @@ class EditBookActivity : AppCompatActivity() {
         const val ID = "book_id"
         const val UPDATED_AUTHOR = "author_name"
         const val UPDATED_BOOK = "book_name"
+        const val UPDATED_DESCRIPTION = "decription"
     }
 }

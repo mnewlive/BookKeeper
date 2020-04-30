@@ -25,9 +25,11 @@ class NewBookActivity : AppCompatActivity() {
             } else {
                 val author = etAuthorName.text.toString()
                 val book = etBookName.text.toString()
+                val description = etDescription.text.toString()
 
                 resultIntent.putExtra(NEW_AUTHOR, author)
                 resultIntent.putExtra(NEW_BOOK, book)
+                resultIntent.putExtra(NEW_DESCRIPTION, description)
                 setResult(Activity.RESULT_OK, resultIntent)
             }
             finish()
@@ -41,5 +43,6 @@ class NewBookActivity : AppCompatActivity() {
     companion object {
         const val NEW_AUTHOR = "new_author"
         const val NEW_BOOK = "new_book"
+        const val NEW_DESCRIPTION = "new_description"
     }
 }
