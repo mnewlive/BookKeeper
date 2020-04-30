@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         fab.setOnClickListener { view ->
             val intent = Intent(this, NewBookActivity::class.java)
-            startActivityForResult(intent, NEW_NOTE_ACTIVITY_REQUEST_CODE)
+            startActivityForResult(intent, NEW_BOOK_ACTIVITY_REQUEST_CODE)
         }
 
         viewModel = ViewModelProvider(this).get(BookViewModel::class.java)
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == NEW_NOTE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == NEW_BOOK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             val id = UUID.randomUUID().toString()
             val authorName = data?.getStringExtra(NewBookActivity.NEW_AUTHOR) ?: "Толстой"
             val bookName = data?.getStringExtra(NewBookActivity.NEW_BOOK) ?: "Война и мир"
@@ -48,13 +48,21 @@ class MainActivity : AppCompatActivity() {
             val book = Book(id, authorName, bookName)
             viewModel.insert(book)
             Log.d("some", "all is ok")
+        } else if (requestCode == UPDATED_BOOK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            val id = data?.getStringExtra(EditBookActivity.ID) ?: ""
+            val authorName = data?.getStringExtra(EditBookActivity.UPDATED_AUTHOR) ?: ""
+            val bookName = data?.getStringExtra(EditBookActivity.UPDATED_BOOK) ?: ""
+
+            val book = Book(id, authorName, bookName)
+            viewModel.update(book)
+
         } else {
             Log.d("some", "Something was wrong")
         }
     }
 
     companion object {
-        private const val NEW_NOTE_ACTIVITY_REQUEST_CODE = 1
-        const val UPDATE_NOTE_ACTIVITY_REQUEST_CODE = 2
+        private const val NEW_BOOK_ACTIVITY_REQUEST_CODE = 1
+        const val UPDATED_BOOK_ACTIVITY_REQUEST_CODE = 2
     }
 }

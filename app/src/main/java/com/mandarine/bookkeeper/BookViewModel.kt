@@ -21,10 +21,22 @@ class BookViewModel(application: Application): AndroidViewModel(application) {
             .execute(book)
     }
 
+    fun update(book: Book) {
+        UpdateAsyncTask(bookDao)
+            .execute(book)
+    }
+
     companion object {
         private class InsertAsyncTask(private val bookDao: BookDao) : AsyncTask<Book, Void, Void>() {
             override fun doInBackground(vararg books: Book): Void? {
                 bookDao.insert(books[0])
+                return null
+            }
+        }
+
+        private class UpdateAsyncTask(private val bookDao: BookDao) : AsyncTask<Book, Void, Void>() {
+            override fun doInBackground(vararg books: Book): Void? {
+                bookDao.update(books[0])
                 return null
             }
         }

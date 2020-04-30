@@ -47,7 +47,7 @@ class BookListAdapter(private val context: Context) : RecyclerView.Adapter<BookL
 				intent.putExtra("id", bookList[pos].id)
 				intent.putExtra("author", bookList[pos].author)
 				intent.putExtra("book", bookList[pos].book)
-				(context as Activity).startActivityForResult(intent, MainActivity.UPDATE_NOTE_ACTIVITY_REQUEST_CODE)
+				(context as Activity).startActivityForResult(intent, MainActivity.UPDATED_BOOK_ACTIVITY_REQUEST_CODE)
 			}
 			itemView.ivRowDelete.setOnClickListener {
 

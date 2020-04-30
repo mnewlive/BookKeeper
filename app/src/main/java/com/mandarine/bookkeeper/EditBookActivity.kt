@@ -1,5 +1,7 @@
 package com.mandarine.bookkeeper
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_new.*
@@ -25,6 +27,15 @@ class EditBookActivity : AppCompatActivity() {
 
 
         bSave.setOnClickListener {
+            val updatedAuthor = etAuthorName.text.toString()
+            val updatedBook = etBookName.text.toString()
+
+            val resultIntent = Intent()
+            resultIntent.putExtra(ID, id)
+            resultIntent.putExtra(UPDATED_AUTHOR, updatedAuthor)
+            resultIntent.putExtra(UPDATED_BOOK, updatedBook)
+            setResult(Activity.RESULT_OK, resultIntent)
+            
             finish()
         }
 
