@@ -5,9 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,12 +22,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        val bookListAdapter = BookListAdapter(this)
+        recyclerview?.adapter = bookListAdapter
+        recyclerview?.layoutManager = LinearLayoutManager(this)
+
         fab.setOnClickListener { view ->
             val intent = Intent(this, NewBookActivity::class.java)
             startActivityForResult(intent, NEW_NOTE_ACTIVITY_REQUEST_CODE)
         }
 
         viewModel = ViewModelProvider(this).get(BookViewModel::class.java)
+
+        viewModel.allBooks.observe(this, Observer { books ->
+            bookListAdapter.setBooks(books)
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
