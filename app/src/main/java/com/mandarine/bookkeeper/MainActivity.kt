@@ -1,9 +1,14 @@
 package com.mandarine.bookkeeper
 
 import android.app.Activity
+import android.app.SearchManager
+import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -63,6 +68,22 @@ class MainActivity : AppCompatActivity(), BookListAdapter.OnDeleteClickListener 
 
     override fun onDeleteClickListener(book: Book) {
         viewModel.delete(book)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_main, menu)
+
+        // Get the SearchView and set the searchable configuration
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchView = menu.findI tem(R.id.search).actionView as SearchView
+
+        // Setting the SearchResultActivity to show the result
+        val componentName = ComponentName(this, SearchResultActivity::class.java)
+        val searchableInfo = searchManager.getSearchableInfo(componentName)
+        searchView.setSearchableInfo(searchableInfo)
+
+        return true
     }
 
     companion object {

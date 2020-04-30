@@ -17,6 +17,9 @@ interface BookDao {
     @get:Query("SELECT * FROM books")
     val allBooks: LiveData<List<Book>>
 
+    @Query("SELECT * FROM books WHERE book LIKE :searchString OR author LIKE :searchString")
+    fun getBooksByBookOrAuthor(searchString: String): LiveData<List<Book>>
+
     @Update
     fun update(book: Book)
 
