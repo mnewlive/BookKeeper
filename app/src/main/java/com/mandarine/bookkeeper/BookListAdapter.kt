@@ -39,7 +39,7 @@ class BookListAdapter(
         private var pos: Int = 0
 
         fun setData(author: String, book: String, position: Int) {
-            itemView.tvAuthor.text = author
+//            itemView.tvAuthor.text = author
             itemView.tvBook.text = book
             this.pos = position
         }
