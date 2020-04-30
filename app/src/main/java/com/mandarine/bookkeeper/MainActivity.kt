@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), BookListAdapter.OnDeleteClickListener {
 
     private lateinit var viewModel: BookViewModel
 
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        val bookListAdapter = BookListAdapter(this)
+        val bookListAdapter = BookListAdapter(this, onDeleteClickListener = this)
         recyclerview?.adapter = bookListAdapter
         recyclerview?.layoutManager = LinearLayoutManager(this)
 
@@ -59,6 +59,10 @@ class MainActivity : AppCompatActivity() {
         } else {
             Log.d("some", "Something was wrong")
         }
+    }
+
+    override fun onDeleteClickListener(book: Book) {
+        viewModel.delete(book)
     }
 
     companion object {
