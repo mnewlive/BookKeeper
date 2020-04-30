@@ -50,8 +50,9 @@ class MainActivity : AppCompatActivity(), BookListAdapter.OnDeleteClickListener 
             val authorName = data?.getStringExtra(NewBookActivity.NEW_AUTHOR) ?: "Толстой"
             val bookName = data?.getStringExtra(NewBookActivity.NEW_BOOK) ?: "Война и мир"
             val description = data?.getStringExtra(NewBookActivity.NEW_BOOK) ?: "Жили были ..."
+            val currentTime = Calendar.getInstance().time
 
-            val book = Book(id, authorName, bookName, description)
+            val book = Book(id, authorName, bookName, description, currentTime)
             viewModel.insert(book)
             Log.d("some", "all is ok")
         } else if (requestCode == UPDATED_BOOK_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
@@ -59,8 +60,9 @@ class MainActivity : AppCompatActivity(), BookListAdapter.OnDeleteClickListener 
             val authorName = data?.getStringExtra(EditBookActivity.UPDATED_AUTHOR) ?: ""
             val bookName = data?.getStringExtra(EditBookActivity.UPDATED_BOOK) ?: ""
             val description = data?.getStringExtra(EditBookActivity.UPDATED_DESCRIPTION) ?: ""
+            val currentTime = Calendar.getInstance().time
 
-            val book = Book(id, authorName, bookName, description)
+            val book = Book(id, authorName, bookName, description, currentTime)
             viewModel.update(book)
 
         } else {

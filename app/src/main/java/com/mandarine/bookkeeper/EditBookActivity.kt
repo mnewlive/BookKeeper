@@ -21,10 +21,12 @@ class EditBookActivity : AppCompatActivity() {
             val author = bundle.getString("author")
             val book = bundle.getString("book")
             val description = bundle.getString("description")
+            val lastUpdated = bundle.getString("lastUpdated")
 
             etAuthorName.setText(author)
             etBookName.setText(book)
             etDescription.setText(description)
+            txvLastUpdated.setText(lastUpdated)
         }
 
 

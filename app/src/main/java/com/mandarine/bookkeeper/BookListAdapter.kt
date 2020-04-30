@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.list_item.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class BookListAdapter(
     private val context: Context,
@@ -23,7 +25,7 @@ class BookListAdapter(
 
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
         val book = bookList[position]
-        holder.setData(book.author, book.book, position)
+        holder.setData(book.book, book.lastUpdated, position)
         holder.setListeners()
     }
 
@@ -38,9 +40,9 @@ class BookListAdapter(
 
         private var pos: Int = 0
 
-        fun setData(author: String, book: String, position: Int) {
-//            itemView.tvAuthor.text = author
+        fun setData(book: String, lastUpdated: Date?, position: Int) {
             itemView.tvBook.text = book
+            itemView.tvLastUpdated.text = getFormattedDate(lastUpdated)
             this.pos = position
         }
 
@@ -51,6 +53,7 @@ class BookListAdapter(
                 intent.putExtra("author", bookList[pos].author)
                 intent.putExtra("book", bookList[pos].book)
                 intent.putExtra("description", bookList[pos].description)
+                intent.putExtra("lastUpdated", getFormattedDate(bookList[pos].lastUpdated))
                 (context as Activity).startActivityForResult(
                     intent,
                     MainActivity.UPDATED_BOOK_ACTIVITY_REQUEST_CODE
@@ -59,6 +62,15 @@ class BookListAdapter(
             itemView.ivRowDelete.setOnClickListener {
 				onDeleteClickListener.onDeleteClickListener(bookList[pos])
             }
+        }
+
+        private fun getFormattedDate(lastUpdated: Date?): String {
+            var time = "Last Updated: "
+            time += lastUpdated?.let {
+                val sdf = SimpleDateFormat("HH:mm d MMM, yyyy", Locale.getDefault())
+                sdf.format(lastUpdated)
+            } ?: "Not Found"
+            return time
         }
     }
 
