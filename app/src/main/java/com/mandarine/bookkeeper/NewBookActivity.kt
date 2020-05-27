@@ -16,7 +16,7 @@ class NewBookActivity : AppCompatActivity() {
     }
 
     private fun setupViews() {
-        bAdd.setOnClickListener {
+        bSave.setOnClickListener {
             val resultIntent = Intent()
 
             if (TextUtils.isEmpty(etAuthorName.text) ||
@@ -30,6 +30,10 @@ class NewBookActivity : AppCompatActivity() {
                 resultIntent.putExtra(NEW_BOOK, book)
                 setResult(Activity.RESULT_OK, resultIntent)
             }
+            finish()
+        }
+
+        bCancel.setOnClickListener {
             finish()
         }
     }

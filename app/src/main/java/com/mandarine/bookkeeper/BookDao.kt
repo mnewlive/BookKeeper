@@ -1,9 +1,7 @@
 package com.mandarine.bookkeeper
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface BookDao {
@@ -18,4 +16,13 @@ interface BookDao {
     //2nd way to get data, as propriety
     @get:Query("SELECT * FROM books")
     val allBooks: LiveData<List<Book>>
+
+    @Query("SELECT * FROM books WHERE book LIKE :searchString OR author LIKE :searchString")
+    fun getBooksByBookOrAuthor(searchString: String): LiveData<List<Book>>
+
+    @Update
+    fun update(book: Book)
+
+    @Delete
+    fun delete(book: Book)
 }
