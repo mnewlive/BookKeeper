@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View
 import kotlinx.android.synthetic.main.activity_new.*
 
 class NewBookActivity : AppCompatActivity() {
@@ -16,6 +17,8 @@ class NewBookActivity : AppCompatActivity() {
     }
 
     private fun setupViews() {
+        txvLastUpdated.visibility = View.INVISIBLE
+
         bSave.setOnClickListener {
             val resultIntent = Intent()
 

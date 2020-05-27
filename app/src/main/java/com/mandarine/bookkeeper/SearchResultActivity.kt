@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import java.util.*
 
 //TODO: Optimize code with SearchViewModel as MainActivity and BookViewModel(e.g. create a super class)
 class SearchResultActivity : AppCompatActivity(), BookListAdapter.OnDeleteClickListener {
@@ -62,8 +63,9 @@ class SearchResultActivity : AppCompatActivity(), BookListAdapter.OnDeleteClickL
             val authorName = data.getStringExtra(EditBookActivity.UPDATED_AUTHOR)
             val bookName = data.getStringExtra(EditBookActivity.UPDATED_BOOK)
             val description = data?.getStringExtra(EditBookActivity.UPDATED_DESCRIPTION)
+            val currentTime = Calendar.getInstance().time
 
-            val book = Book(bookId, authorName, bookName, description)
+            val book = Book(bookId, authorName, bookName, description, currentTime)
             searchViewModel.update(book)
 
             Toast.makeText(applicationContext, "Updated", Toast.LENGTH_LONG).show()
