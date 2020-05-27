@@ -61,8 +61,9 @@ class SearchResultActivity : AppCompatActivity(), BookListAdapter.OnDeleteClickL
             val bookId = data!!.getStringExtra(EditBookActivity.ID)
             val authorName = data.getStringExtra(EditBookActivity.UPDATED_AUTHOR)
             val bookName = data.getStringExtra(EditBookActivity.UPDATED_BOOK)
+            val description = data?.getStringExtra(EditBookActivity.UPDATED_DESCRIPTION)
 
-            val book = Book(bookId, authorName, bookName)
+            val book = Book(bookId, authorName, bookName, description)
             searchViewModel.update(book)
 
             Toast.makeText(applicationContext, "Updated", Toast.LENGTH_LONG).show()
